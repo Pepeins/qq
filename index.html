@@ -2,18 +2,152 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página con Fondo Personalizado</title>
+    <title>Logo Creativo de Clave de Sol al Estilo Spotify</title>
     <style>
         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            background: url('fondo.png') repeat;
-            background-size: 1080px 1471px;
-            height: 200vh;
+            background-color: #121212;
+        }
+        canvas {
+            max-width: 400px;
+            max-height: 400px;
         }
     </style>
 </head>
 <body>
+    <canvas id="creativeClefLogo" width="400" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('creativeClefLogo');
+        const ctx = canvas.getContext('2d');
+
+        function drawCreativeTrebleClef() {
+            // Limpiar el canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Gradiente verde de Spotify
+            const gradient = ctx.createLinearGradient(100, 50, 300, 350);
+            gradient.addColorStop(0, '#1DB954');
+            gradient.addColorStop(0.5, '#1ED760');
+            gradient.addColorStop(1, '#14863C');
+
+            // Configuraciones para un efecto moderno
+            ctx.shadowColor = 'rgba(30, 215, 96, 0.4)';
+            ctx.shadowBlur = 20;
+            ctx.shadowOffsetY = 5;
+
+            ctx.beginPath();
+
+            // Cuerpo principal de la clave de sol
+            ctx.moveTo(200, 100);
+            
+            // Curva superior más dinámica
+            ctx.bezierCurveTo(130, 160, 150, 250, 230, 300);
+            
+            // Curva inferior con más movimiento
+            ctx.bezierCurveTo(280, 340, 250, 380, 190, 390);
+            
+            // Línea vertical con ligera curvatura
+            ctx.quadraticCurveTo(170, 250, 190, 120);
+            
+            // Círculo en la base con un toque de twist
+            ctx.arc(180, 410, 20, Math.PI * 1.7, Math.PI * 0.3);
+
+            // Estilo de relleno con gradiente
+            ctx.fillStyle = gradient;
+            ctx.fill();
+
+            // Añadir algunos detalles de líneas dinámicas
+            ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Restaurar configuraciones de sombra
+            ctx.shadowColor = 'transparent';
+        }
+
+        // Dibujar la clave de sol
+        drawCreativeTrebleClef();
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Logo Creativo de Clave de Sol al Estilo Spotify</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+        }
+        canvas {
+            max-width: 400px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="creativeClefLogo" width="400" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('creativeClefLogo');
+        const ctx = canvas.getContext('2d');
+
+        function drawCreativeTrebleClef() {
+            // Limpiar el canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Gradiente verde de Spotify
+            const gradient = ctx.createLinearGradient(100, 50, 300, 350);
+            gradient.addColorStop(0, '#1DB954');
+            gradient.addColorStop(0.5, '#1ED760');
+            gradient.addColorStop(1, '#14863C');
+
+            // Configuraciones para un efecto moderno
+            ctx.shadowColor = 'rgba(30, 215, 96, 0.4)';
+            ctx.shadowBlur = 20;
+            ctx.shadowOffsetY = 5;
+
+            ctx.beginPath();
+
+            // Cuerpo principal de la clave de sol
+            ctx.moveTo(200, 100);
+            
+            // Curva superior más dinámica
+            ctx.bezierCurveTo(130, 160, 150, 250, 230, 300);
+            
+            // Curva inferior con más movimiento
+            ctx.bezierCurveTo(280, 340, 250, 380, 190, 390);
+            
+            // Línea vertical con ligera curvatura
+            ctx.quadraticCurveTo(170, 250, 190, 120);
+            
+            // Círculo en la base con un toque de twist
+            ctx.arc(180, 410, 20, Math.PI * 1.7, Math.PI * 0.3);
+
+            // Estilo de relleno con gradiente
+            ctx.fillStyle = gradient;
+            ctx.fill();
+
+            // Añadir algunos detalles de líneas dinámicas
+            ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Restaurar configuraciones de sombra
+            ctx.shadowColor = 'transparent';
+        }
+
+        // Dibujar la clave de sol
+        drawCreativeTrebleClef();
+    </script>
 </body>
 </html>
