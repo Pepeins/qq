@@ -2,114 +2,60 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Logo Creativo de Clave de Sol</title>
+    <title>Logo Creativo de Clave de Sol al Estilo Spotify</title>
     <style>
-        html, body {
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
             background-color: #121212;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #container {
-            width: 100%;
-            max-width: 100vw;
-            height: 100%;
-            max-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
         }
         canvas {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
+            max-width: 400px;
+            max-height: 400px;
         }
     </style>
 </head>
 <body>
-    <div id="container">
-        <canvas id="creativeClefLogo" width="400" height="400"></canvas>
-    </div>
+    <canvas id="creativeClefLogo" width="400" height="400"></canvas>
 
     <script>
         const canvas = document.getElementById('creativeClefLogo');
-        const container = document.getElementById('container');
         const ctx = canvas.getContext('2d');
-
-        // Función para ajustar el tamaño del canvas
-        function resizeCanvas() {
-            const containerWidth = container.clientWidth;
-            const containerHeight = container.clientHeight;
-            
-            // Calcular el tamaño máximo manteniendo la proporción
-            const size = Math.min(containerWidth, containerHeight) * 0.9;
-            
-            canvas.width = size;
-            canvas.height = size;
-            
-            // Redibujar la clave de sol
-            drawCreativeTrebleClef();
-        }
 
         function drawCreativeTrebleClef() {
             // Limpiar el canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Calcular proporciones dinámicas
-            const width = canvas.width;
-            const height = canvas.height;
-
             // Gradiente verde de Spotify
-            const gradient = ctx.createLinearGradient(width * 0.25, height * 0.125, width * 0.75, height * 0.875);
+            const gradient = ctx.createLinearGradient(100, 50, 300, 350);
             gradient.addColorStop(0, '#1DB954');
             gradient.addColorStop(0.5, '#1ED760');
             gradient.addColorStop(1, '#14863C');
 
             // Configuraciones para un efecto moderno
             ctx.shadowColor = 'rgba(30, 215, 96, 0.4)';
-            ctx.shadowBlur = width * 0.05;
-            ctx.shadowOffsetY = width * 0.0125;
+            ctx.shadowBlur = 20;
+            ctx.shadowOffsetY = 5;
 
             ctx.beginPath();
 
-            // Cuerpo principal de la clave de sol con proporciones dinámicas
-            ctx.moveTo(width * 0.5, height * 0.25);
+            // Cuerpo principal de la clave de sol
+            ctx.moveTo(200, 100);
             
             // Curva superior más dinámica
-            ctx.bezierCurveTo(
-                width * 0.325, height * 0.4, 
-                width * 0.375, height * 0.625, 
-                width * 0.575, height * 0.75
-            );
+            ctx.bezierCurveTo(130, 160, 150, 250, 230, 300);
             
             // Curva inferior con más movimiento
-            ctx.bezierCurveTo(
-                width * 0.7, height * 0.85, 
-                width * 0.625, height * 0.95, 
-                width * 0.475, height * 0.975
-            );
+            ctx.bezierCurveTo(280, 340, 250, 380, 190, 390);
             
             // Línea vertical con ligera curvatura
-            ctx.quadraticCurveTo(
-                width * 0.425, height * 0.625, 
-                width * 0.475, height * 0.3
-            );
+            ctx.quadraticCurveTo(170, 250, 190, 120);
             
             // Círculo en la base con un toque de twist
-            ctx.arc(
-                width * 0.45, height * 1.025, 
-                width * 0.05, 
-                Math.PI * 1.7, 
-                Math.PI * 0.3
-            );
+            ctx.arc(180, 410, 20, Math.PI * 1.7, Math.PI * 0.3);
 
             // Estilo de relleno con gradiente
             ctx.fillStyle = gradient;
@@ -117,153 +63,15 @@
 
             // Añadir algunos detalles de líneas dinámicas
             ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-            ctx.lineWidth = width * 0.0075;
+            ctx.lineWidth = 3;
             ctx.stroke();
 
             // Restaurar configuraciones de sombra
             ctx.shadowColor = 'transparent';
         }
 
-        // Evento de redimensionamiento
-        window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('orientationchange', resizeCanvas);
-
-        // Inicializar el tamaño
-        resizeCanvas();
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Logo Creativo de Clave de Sol</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background-color: #121212;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #container {
-            width: 100%;
-            max-width: 100vw;
-            height: 100%;
-            max-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        canvas {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-        }
-    </style>
-</head>
-<body>
-    <div id="container">
-        <canvas id="creativeClefLogo" width="400" height="400"></canvas>
-    </div>
-
-    <script>
-        const canvas = document.getElementById('creativeClefLogo');
-        const container = document.getElementById('container');
-        const ctx = canvas.getContext('2d');
-
-        // Función para ajustar el tamaño del canvas
-        function resizeCanvas() {
-            const containerWidth = container.clientWidth;
-            const containerHeight = container.clientHeight;
-            
-            // Calcular el tamaño máximo manteniendo la proporción
-            const size = Math.min(containerWidth, containerHeight) * 0.9;
-            
-            canvas.width = size;
-            canvas.height = size;
-            
-            // Redibujar la clave de sol
-            drawCreativeTrebleClef();
-        }
-
-        function drawCreativeTrebleClef() {
-            // Limpiar el canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Calcular proporciones dinámicas
-            const width = canvas.width;
-            const height = canvas.height;
-
-            // Gradiente verde de Spotify
-            const gradient = ctx.createLinearGradient(width * 0.25, height * 0.125, width * 0.75, height * 0.875);
-            gradient.addColorStop(0, '#1DB954');
-            gradient.addColorStop(0.5, '#1ED760');
-            gradient.addColorStop(1, '#14863C');
-
-            // Configuraciones para un efecto moderno
-            ctx.shadowColor = 'rgba(30, 215, 96, 0.4)';
-            ctx.shadowBlur = width * 0.05;
-            ctx.shadowOffsetY = width * 0.0125;
-
-            ctx.beginPath();
-
-            // Cuerpo principal de la clave de sol con proporciones dinámicas
-            ctx.moveTo(width * 0.5, height * 0.25);
-            
-            // Curva superior más dinámica
-            ctx.bezierCurveTo(
-                width * 0.325, height * 0.4, 
-                width * 0.375, height * 0.625, 
-                width * 0.575, height * 0.75
-            );
-            
-            // Curva inferior con más movimiento
-            ctx.bezierCurveTo(
-                width * 0.7, height * 0.85, 
-                width * 0.625, height * 0.95, 
-                width * 0.475, height * 0.975
-            );
-            
-            // Línea vertical con ligera curvatura
-            ctx.quadraticCurveTo(
-                width * 0.425, height * 0.625, 
-                width * 0.475, height * 0.3
-            );
-            
-            // Círculo en la base con un toque de twist
-            ctx.arc(
-                width * 0.45, height * 1.025, 
-                width * 0.05, 
-                Math.PI * 1.7, 
-                Math.PI * 0.3
-            );
-
-            // Estilo de relleno con gradiente
-            ctx.fillStyle = gradient;
-            ctx.fill();
-
-            // Añadir algunos detalles de líneas dinámicas
-            ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-            ctx.lineWidth = width * 0.0075;
-            ctx.stroke();
-
-            // Restaurar configuraciones de sombra
-            ctx.shadowColor = 'transparent';
-        }
-
-        // Evento de redimensionamiento
-        window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('orientationchange', resizeCanvas);
-
-        // Inicializar el tamaño
-        resizeCanvas();
+        // Dibujar la clave de sol
+        drawCreativeTrebleClef();
     </script>
 </body>
 </html>
