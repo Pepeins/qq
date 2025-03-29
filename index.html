@@ -2,76 +2,133 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Logo Creativo de Clave de Sol al Estilo Spotify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Creativo de Clave de Sol (Móvil Optimizado)</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #121212;
+            padding: 20px; 
+            box-sizing: border-box; 
+        }
+        #logo-container {
+            width: 90%;       
+            max-width: 400px;  
+            aspect-ratio: 1 / 1;
         }
         canvas {
-            max-width: 400px;
-            max-height: 400px;
+            display: block;   
+            width: 100%;       
+            height: 100%;       
         }
     </style>
 </head>
 <body>
-    <canvas id="creativeClefLogo" width="400" height="400"></canvas>
+    <div id="logo-container">
+        <canvas id="creativeClefLogo"></canvas>
+    </div>
 
     <script>
         const canvas = document.getElementById('creativeClefLogo');
         const ctx = canvas.getContext('2d');
+        const container = document.getElementById('logo-container');
+
+        const spotifyGreenLight = '#1ED760';
+        const spotifyGreenMid = '#1DB954';
+        const spotifyGreenDark = '#14863C';
 
         function drawCreativeTrebleClef() {
-            // Limpiar el canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const size = container.clientWidth;
+            const dpr = window.devicePixelRatio || 1
 
-            // Gradiente verde de Spotify
-            const gradient = ctx.createLinearGradient(100, 50, 300, 350);
-            gradient.addColorStop(0, '#1DB954');
-            gradient.addColorStop(0.5, '#1ED760');
-            gradient.addColorStop(1, '#14863C');
+            canvas.width = Math.round(size * dpr);
+            canvas.height = Math.round(size * dpr);
+            canvas.style.width = size + 'px';
+            canvas.style.height = size + 'px';
 
-            // Configuraciones para un efecto moderno
-            ctx.shadowColor = 'rgba(30, 215, 96, 0.4)';
-            ctx.shadowBlur = 20;
-            ctx.shadowOffsetY = 5;
+            ctx.scale(dpr, dpr);
+
+            ctx.clearRect(0, 0, size, size);
+
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const scaleFactor = size / 400; 
+
+            const startY = centerY - 150 * scaleFactor;
+            const topLoopCp1X = centerX - 120 * scaleFactor;
+            const topLoopCp1Y = centerY - 100 * scaleFactor;
+            const topLoopCp2X = centerX - 90 * scaleFactor;
+            const topLoopCp2Y = centerY + 50 * scaleFactor;
+            const topLoopEndX = centerX + 0 * scaleFactor;
+            const topLoopEndY = centerY + 30 * scaleFactor;
+
+            const bottomLoopCp1X = centerX + 110 * scaleFactor;
+            const bottomLoopCp1Y = centerY + 130 * scaleFactor;
+            const bottomLoopCp2X = centerX - 10 * scaleFactor;
+            const bottomLoopCp2Y = centerY + 200 * scaleFactor;
+            const bottomLoopEndX = centerX - 50 * scaleFactor;
+            const bottomLoopEndY = centerY + 150 * scaleFactor;
+
+            const lineTopX = centerX - 5 * scaleFactor;
+            const lineTopY = startY;
+            const lineBottomCpX = centerX - 20 * scaleFactor;
+            const lineBottomCpY = centerY + 50 * scaleFactor;
+
+            const gradient = ctx.createLinearGradient(
+                centerX - 80 * scaleFactor, centerY - 150 * scaleFactor,
+                centerX + 80 * scaleFactor, centerY + 150 * scaleFactor
+            );
+            gradient.addColorStop(0, spotifyGreenLight);
+            gradient.addColorStop(0.5, spotifyGreenMid);
+            gradient.addColorStop(1, spotifyGreenDark);
+
+            ctx.shadowColor = 'rgba(30, 215, 96, 0.35)';
+            ctx.shadowBlur = 25 * scaleFactor;
+            ctx.shadowOffsetX = 3 * scaleFactor;
+            ctx.shadowOffsetY = 6 * scaleFactor;
 
             ctx.beginPath();
+            ctx.moveTo(lineTopX, lineTopY);
+            ctx.bezierCurveTo(
+                topLoopCp1X, topLoopCp1Y,
+                topLoopCp2X, topLoopCp2Y,
+                topLoopEndX, topLoopEndY
+            );
+            ctx.bezierCurveTo(
+                bottomLoopCp1X, bottomLoopCp1Y,
+                bottomLoopCp2X, bottomLoopCp2Y,
+                bottomLoopEndX, bottomLoopEndY
+            );
+             ctx.quadraticCurveTo(
+                lineBottomCpX, lineBottomCpY, 
+                lineTopX, lineTopY         
+             );
 
-            // Cuerpo principal de la clave de sol
-            ctx.moveTo(200, 100);
-            
-            // Curva superior más dinámica
-            ctx.bezierCurveTo(130, 160, 150, 250, 230, 300);
-            
-            // Curva inferior con más movimiento
-            ctx.bezierCurveTo(280, 340, 250, 380, 190, 390);
-            
-            // Línea vertical con ligera curvatura
-            ctx.quadraticCurveTo(170, 250, 190, 120);
-            
-            // Círculo en la base con un toque de twist
-            ctx.arc(180, 410, 20, Math.PI * 1.7, Math.PI * 0.3);
-
-            // Estilo de relleno con gradiente
             ctx.fillStyle = gradient;
             ctx.fill();
 
-            // Añadir algunos detalles de líneas dinámicas
-            ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-            ctx.lineWidth = 3;
-            ctx.stroke();
-
-            // Restaurar configuraciones de sombra
             ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
         }
 
-        // Dibujar la clave de sol
+        let resizeTimer;
+        function handleResize() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                 drawCreativeTrebleClef();
+            }, 100);
+        }
+
         drawCreativeTrebleClef();
+
+        window.addEventListener('resize', handleResize);
+
     </script>
 </body>
 </html>
