@@ -278,13 +278,13 @@
         </div>
 
         <div class="social-links">
-            <a href="https://www.tiktok.com/@tuusuario" target="_blank" aria-label="TikTok">
+            <a href="https://www.tiktok.com/@nicolascalasibetta" target="_blank" aria-label="TikTok">
                 <i class="fab fa-tiktok"></i>
             </a>
-            <a href="https://twitter.com/tuusuario" target="_blank" aria-label="Twitter/X">
+            <a href="https://twitter.com/" target="_blank" aria-label="Twitter/X">
                 <i class="fab fa-x-twitter"></i>
             </a>
-            <a href="https://www.instagram.com/tuusuario" target="_blank" aria-label="Instagram">
+            <a href="https://www.instagram.com/o7.lyrics" target="_blank" aria-label="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
@@ -295,7 +295,6 @@
     </footer>
 
     <script>
-        // Background particles animation with improved performance
         const backgroundCanvas = document.getElementById("backgroundCanvas");
         const bgCtx = backgroundCanvas.getContext("2d");
         
@@ -357,7 +356,6 @@
         }
         requestAnimationFrame(animateParticles);
 
-        // Creative Clef Logo with improved rendering
         const canvas = document.getElementById('creativeClefLogo');
         const ctx = canvas.getContext('2d');
         const container = document.getElementById('logo-container');
@@ -397,7 +395,6 @@
             const lineBottomCpX = centerX - 20 * scaleFactor;
             const lineBottomCpY = centerY + 50 * scaleFactor;
 
-            // Draw shadow first
             ctx.save();
             ctx.beginPath();
             ctx.moveTo(lineTopX + 3 * scaleFactor, lineTopY + 3 * scaleFactor);
@@ -420,7 +417,6 @@
             ctx.fill();
             ctx.restore();
 
-            // Draw main shape
             const gradient = ctx.createLinearGradient(
                 centerX - 80 * scaleFactor, centerY - 150 * scaleFactor,
                 centerX + 80 * scaleFactor, centerY + 150 * scaleFactor
@@ -437,7 +433,6 @@
             ctx.fillStyle = gradient;
             ctx.fill();
 
-            // Add highlight
             ctx.beginPath();
             ctx.moveTo(centerX - 40 * scaleFactor, centerY - 100 * scaleFactor);
             ctx.quadraticCurveTo(
@@ -458,7 +453,6 @@
             ctx.fill();
         }
 
-        // Efficient resize handler with debounce
         let resizeTimer;
         function handleResize() {
             clearTimeout(resizeTimer);
@@ -471,7 +465,6 @@
         drawCreativeTrebleClef();
         window.addEventListener('resize', handleResize);
 
-        // Enhanced form submission handling
         const form = document.querySelector('.subscribe-form');
         const successMessage = document.getElementById('successMessage');
         
@@ -481,18 +474,16 @@
                 const emailInput = form.querySelector('input[type="email"]');
                 const submitButton = form.querySelector('button');
                 
-                // Show loading state
                 submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
                 submitButton.disabled = true;
-                
-                // Simulate API call with setTimeout
+
                 setTimeout(() => {
-                    // Show success state
+                    
                     submitButton.innerHTML = '<i class="fas fa-check"></i> ¡Listo!';
                     emailInput.disabled = true;
                     successMessage.style.opacity = '1';
                     
-                    // Store in localStorage to remember submission
+                    
                     try {
                         localStorage.setItem('lyricsSubscribed', 'true');
                         localStorage.setItem('lyricsEmail', emailInput.value);
@@ -500,7 +491,7 @@
                         console.log('LocalStorage not available');
                     }
                     
-                    // Add subtle success animation to the form
+                    
                     form.style.transition = 'transform 0.5s ease';
                     form.style.transform = 'scale(1.03)';
                     setTimeout(() => {
@@ -509,7 +500,6 @@
                 }, 1500);
             });
             
-            // Check if already subscribed
             try {
                 if (localStorage.getItem('lyricsSubscribed') === 'true') {
                     const emailInput = form.querySelector('input[type="email"]');
