@@ -168,6 +168,26 @@
             z-index: 2; 
         }
 
+        .watermark {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            font-size: 0.7rem;
+            color: var(--spotify-light-grey);
+            opacity: 0.15;
+            z-index: 2;
+            font-weight: 300;
+            letter-spacing: 1px;
+            pointer-events: none;
+            transform: rotate(-90deg) translateY(10px);
+            transform-origin: bottom right;
+            transition: opacity 0.3s ease;
+        }
+        
+        .watermark:hover {
+            opacity: 0.4;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             *, ::before, ::after {
                 animation-duration: 0.01ms !important;
@@ -182,7 +202,7 @@
              #logoCanvas { opacity: 0.1; }
             .social-links a:hover,
             .social-links a:focus-visible { transform: none; }
-           
+            .watermark { transition: none; }
         }
 
     </style>
@@ -217,6 +237,8 @@
     <footer>
         © 2024 Lyrics
     </footer>
+
+    <div class="watermark">wesk</div>
 
     <script>
         
